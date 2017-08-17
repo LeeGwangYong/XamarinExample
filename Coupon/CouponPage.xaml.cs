@@ -2,7 +2,7 @@
 
 namespace Coupon
 {
-    public partial class CouponPage : ContentPage
+    public partial class CouponPage : NavigationPage
     {
         public CouponPage()
         {
