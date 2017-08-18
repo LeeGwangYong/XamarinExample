@@ -1,4 +1,5 @@
 ﻿using Xamarin.Forms;
+using Coupon.Views;
 
 namespace Coupon
 {
@@ -8,7 +9,7 @@ namespace Coupon
         {
             InitializeComponent();
 
-            MainPage = new CouponPage();
+            MainPage = new LogInView();
         }
 
         protected override void OnStart()
