@@ -5,11 +5,17 @@ namespace Coupon
 {
     public partial class App : Application
     {
+        public static bool LogInCheck { get; set; }
         public App()
         {
             InitializeComponent();
 
-            MainPage = new LogInView();
+            if (LogInCheck == false){
+                MainPage = new NavigationPage(new LogInView());
+			}
+            else{
+                MainPage = new NavigationPage(new Coupon.Views.MainView());
+            }
         }
 
         protected override void OnStart()

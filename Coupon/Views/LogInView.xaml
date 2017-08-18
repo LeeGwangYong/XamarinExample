@@ -28,7 +28,7 @@
         </StackLayout>
         <StackLayout VerticalOptions="End">
             <Button Text="SIGN UP" />
-            <Button Text="SIGN IN" />
+            <Button Text="LOG IN" Command="{Binding NavigateToMainView_Command}"/>
         </StackLayout>
         </Grid>
     </ContentPage.Content>
