@@ -3,10 +3,11 @@ using System.Windows.Input;//Using ICommand
 using Xamarin.Forms;//Using Command
 using Coupon.Views;
 using System.Threading.Tasks;//using Task
+using System.Diagnostics.Contracts;
 
 namespace Coupon.ViewModels
 {
-    public class LogInViewModel
+    public class LogInViewModel : BaseViewModel
     {
         INavigation Navigation;
         Page CurrentPage;
@@ -15,15 +16,63 @@ namespace Coupon.ViewModels
             Navigation = Nav;
             CurrentPage = Current;
 
-            NavigateToMainView_Command = new Command(async ()=> await NavigateToMainView_Function());
+            NavigateToMainView_Command = new Command(async () => await NavigateToMainView_Function());
         }
-        public ICommand NavigateToMainView_Command{get; set;}
+
+        #region Field
+        private string userID { get; set; }
+        public string UserID
+        {
+            get { return userID; }
+            set
+            {
+                if (userID != value)
+                {
+                    userID = value;
+                    NotifyPropertyChanged("userID");
+                }
+            }
+        }
+        private string userPW { get; set; }
+        public string UserPW
+        {
+            get { return userPW; }
+            set
+            {
+                if (userPW != value)
+                {
+                    userPW = value;
+                    NotifyPropertyChanged("userPW");
+                }
+            }
+        }
+        #endregion
+
+        #region Command
+        public ICommand NavigateToMainView_Command { get; set; }
         private async Task NavigateToMainView_Function()
         {
-            App.LogInCheck = true;
-            await Navigation.PushAsync(new MainView());
-            //Navigation.InsertPageBefore(new MainView(), CurrentPage);
-            await Navigation.PopAsync();
+            string temporal_ID = "Test@email.com";
+            string temporal_PW = "test";
+            if (string.IsNullOrWhiteSpace(userID) == false &&
+               string.IsNullOrWhiteSpace(userPW) == false){
+				if (userID.Equals(temporal_ID) && userPW.Equals(temporal_PW))
+				{
+					App.LogInCheck = true;
+                    Navigation.InsertPageBefore(new MainView(), CurrentPage);
+					await Navigation.PopAsync();
+				}
+                else
+				{
+					await Application.Current.MainPage.DisplayAlert("Title", "Incorrect User Information.\nPlease Retry", "OK");
+                }
+
+            }
+            else{
+				await Application.Current.MainPage.DisplayAlert("Title", "You didn't input all of information.\nPlease Input ID or Password", "OK");
+			}
         }
+        #endregion
+
     }
 }

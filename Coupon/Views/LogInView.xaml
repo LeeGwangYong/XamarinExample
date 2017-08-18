@@ -21,9 +21,11 @@
         <StackLayout VerticalOptions="Center"
             HorizontalOptions="Fill" Margin="10">
             <Entry Placeholder="Input User ID"
+                    Text="{Binding UserID}"
                 Style="{StaticResource EntryStyle}"/>
             <Entry Placeholder="Input User Password"
                 IsPassword="true"
+                    Text="{Binding UserPW}"
                 Style="{StaticResource EntryStyle}"/>
         </StackLayout>
         <StackLayout VerticalOptions="End">
