@@ -55,7 +55,8 @@ namespace Coupon.ViewModels
             string temporal_ID = "Test@email.com";
             string temporal_PW = "test";
             if (string.IsNullOrWhiteSpace(userID) == false &&
-               string.IsNullOrWhiteSpace(userPW) == false){
+               string.IsNullOrWhiteSpace(userPW) == false)
+            {
 				if (userID.Equals(temporal_ID) && userPW.Equals(temporal_PW))
 				{
 					App.LogInCheck = true;
@@ -64,12 +65,13 @@ namespace Coupon.ViewModels
 				}
                 else
 				{
-					await Application.Current.MainPage.DisplayAlert("Title", "Incorrect User Information.\nPlease Retry", "OK");
+					await Application.Current.MainPage.DisplayAlert("Alert", "Incorrect User Information.\nPlease Retry", "OK");
                 }
 
             }
-            else{
-				await Application.Current.MainPage.DisplayAlert("Title", "You didn't input all of information.\nPlease Input ID or Password", "OK");
+            else
+            {
+				await Application.Current.MainPage.DisplayAlert("Alert", "You didn't input all of information.\nPlease Input ID or Password", "OK");
 			}
         }
         #endregion
